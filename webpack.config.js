@@ -48,6 +48,8 @@ module.exports = function(webpackConfig, env) {
       'assets':`${__dirname}/src/assets`,
       'utils':`${__dirname}/src/utils`,
       'constants':`${__dirname}/src/constants`,
+      'services':`${__dirname}/src/services`,
+      'components':`${__dirname}/src/components`,
     }
   }
   return webpackConfig;

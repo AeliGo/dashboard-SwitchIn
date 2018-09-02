@@ -1,3 +1,4 @@
+"use strict"
 
 const Mock=require('mockjs');
 
@@ -38,11 +39,4 @@ module.exports={
         const msg={'code':'1','msg':'delete successully'}
         res.status(200).json(msg)
     },
-
-    //login
-    [`GET /api/login`](req,res){ 
-        const msg={'code':'0','msg':'login successfully'}
-        res.status(200).json(msg);
-    },
-
 }
