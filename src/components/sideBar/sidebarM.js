@@ -35,7 +35,7 @@ export default {
     subscriptions:{
         setup({ dispatch,history }){
           return history.listen(({ pathname,search })=>{ //
-              
+            console.log(1)
           });
         }
     }

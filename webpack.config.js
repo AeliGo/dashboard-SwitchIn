@@ -50,6 +50,7 @@ module.exports = function(webpackConfig, env) {
       'constants':`${__dirname}/src/constants`,
       'services':`${__dirname}/src/services`,
       'components':`${__dirname}/src/components`,
+      'routes':`${__dirname}/src/routes`,
     }
   }
   return webpackConfig;

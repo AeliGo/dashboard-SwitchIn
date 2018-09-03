@@ -19,7 +19,7 @@ module.exports={
                         parent_id:null,
                         name:'Users',
                         icon:'user',
-                        url:'/users'
+                        url:'/dashboard/users'
                     },
                     {
                         id:3,
