@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Route} from 'dva/router';
-import IndexPage from './routes/IndexPage';
-import Users from './routes/Users';
+import IndexPage from 'routes/IndexPage';
+import Users from 'components/users/users';
 import Dashboard from 'pages/dashboard/dashboard'
 import Analysis from 'components/analysis/analysis'
 

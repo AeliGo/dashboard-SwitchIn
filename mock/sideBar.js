@@ -33,21 +33,21 @@ module.exports={
                         parent_id:3,
                         name:'Echarts',
                         icon:'pie-chart',
-                        url:null
+                        url:'/dashboard/charts/echarts'
                     },
                     {
                         id:302,
                         parent_id:3,
                         name:'Highcharts',
                         icon:'bar-chart',
-                        url:null
+                        url:'/dashboard/charts/hcharts'
                     },
                     {
                         id:303,
                         parent_id:3,
                         name:'Googlecharts',
                         icon:'dot-chart',
-                        url:null
+                        url:'/dashboard/charts/gcharts'
                     },
                     {
                         id:4,

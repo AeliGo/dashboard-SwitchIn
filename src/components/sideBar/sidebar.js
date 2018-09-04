@@ -10,8 +10,9 @@ const SubMenu=Menu.SubMenu;
 const { Sider} = Layout;
 
 const SideBar = ({dispatch,SideBarM}) => {
+    // console.log(SideBarM)
 
-    const {collapsed,sidebarTree,openKeys,rootSubmenuKeys}=SideBarM;
+    const {collapsed, sidebarTree, openKeys, rootSubmenuKeys, defaultKey}=SideBarM;
 
     function onOpenChange(Keys){
         const latestOpenKey = Keys.find(key => openKeys.indexOf(key) === -1);
@@ -45,26 +46,29 @@ const SideBar = ({dispatch,SideBarM}) => {
         });
     }
 
+    const menuProps={
+        theme:"dark" ,
+        mode:"inline" ,
+        inlineCollapsed:collapsed,
+        defaultSelectedKeys:[`${defaultKey}`],
+        openKeys:openKeys,
+        onOpenChange:onOpenChange
+    }
+
     return (
+    
     <Sider
     trigger={null}
     collapsible
-    collapsed={collapsed}
-    >
+    collapsed={collapsed}>
         <div className={styles.logo}>
             <img alt="logo" src={require('../../assets/logo.svg')} />
             {collapsed?'':<span>{config.name}</span>}
         </div>
-        <Menu 
-        theme="dark" 
-        mode="inline" 
-        inlineCollapsed={collapsed}
-        defaultSelectedKeys={['1']}
-        openKeys={openKeys}
-        onOpenChange={onOpenChange}
-        >
-            { generateMenu({ treeData:sidebarTree }) }
-        </Menu>
+        {
+            [`${defaultKey}`][0].length>0   ? <Menu {...menuProps}>{ generateMenu({ treeData:sidebarTree }) }</Menu>
+                                            : null
+        }
     </Sider>
   )
 }

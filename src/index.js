@@ -1,10 +1,10 @@
 import './index.html';
 import './index.css';
 import dva from 'dva';
-import productModel from './models/products'
-import indexM from 'pages/login/loginM'
+import loginM from 'pages/login/loginM'
 import dashboardM from 'pages/dashboard/dashboardM'
 import sidebarM from 'components/sideBar/sidebarM'
+import usersM from 'components/users/usersM';
 
 // 1. Initialize
 const app = dva();
@@ -13,8 +13,8 @@ const app = dva();
 //app.use({});
 
 // 3. Model
-app.model(productModel);
-app.model(indexM);
+app.model(usersM);
+app.model(loginM);
 app.model(dashboardM);
 app.model(sidebarM);
 

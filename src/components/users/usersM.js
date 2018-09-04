@@ -9,10 +9,6 @@ export default {
     loading:true
   },
   reducers: {
-    // 'delete'(state, { payload: id }) {
-    //   const list = state.list;
-    //   return {list:list.filter(item => item.id !== id)} ;
-    // },
     'save'(state,{payload:{data:{data:{list,total,pageSize}},page}}){
         return {...state,list,total,pageSize,page,loading:false}
     },
@@ -56,10 +52,8 @@ export default {
   },
   subscriptions:{
     setup({ dispatch,history }){
-      console.log('running subscriptions ...');
       return history.listen(({ pathname,search })=>{ //
-          console.log(`pathname: ${pathname}`);
-          if(pathname==='/users'){
+          if(pathname==='/dashboard/users'){
             dispatch({ type:'query'});
           }
       });

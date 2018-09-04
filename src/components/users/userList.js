@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'dva';
 import { Table, Popconfirm, Button, Pagination,Icon} from 'antd';
-import UserModel from './UserModel'
 import {PAGE_SIZE} from 'constants'
+import UserModel from 'components/userModel/userModel'
 
 
 const UserList = ({ dispatch,list:dataSource,total,page,loading}) => {
@@ -100,7 +100,6 @@ const UserList = ({ dispatch,list:dataSource,total,page,loading}) => {
 //把store中的state拉到本地待用
 function mapStateToProps(state){
   const {list,total,page,loading} =state.user;
-  console.log('state|user',state.user)
   return {
     list,
     total,
