@@ -1,106 +1,70 @@
 import React  from 'react'
-import PropTypes from 'prop-types'
-import {Modal,Form,Input,Radio} from 'antd'
+import {Modal,Form,Input,Radio,Button} from 'antd'
 
 class UserModel extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {
-      visible: false, // In charge of visibility of Model
-      loading: false
-    };
-    this._isMounted=true  
-    //Just set a _isMounted property to true in componentDidMount and set it to false in componentWillUnmount, 
-    //to check component's status.
   }
 
-  static propTypes={
-    ok:PropTypes.func.isRequired,
-    record:PropTypes.object.isRequired
-  }
-
-  showModelHandler = e => {
-    if (e) e.stopPropagation();
-    this.setState({
-      visible: true,
-    });
-  };
-
-  hideModelHandler = () => {
-    this.setState({
-      visible: false,
-      loading: false
-    });
-  };
-
-  save=()=>{
-    this.setState({loading:true})
-    this.props.form.validateFields((err,val)=>{
-      if(!err){
-        this.props.ok(val);
-        setTimeout(()=>{ //after 2s okbtn clicked invoke callback
-          if(this._isMounted){
-            this.hideModelHandler();
-          }
-        },2000)
-      }
-    });
-  }
-
-  clearInfo=()=>{
-    this.props.form.resetFields();
-  }
-
-  componentWillUnmount=()=>{
-    this._isMounted=false
-  }
 
   render(){
-    const {form:{ getFieldDecorator },children,title}=this.props;
-    const {name,age,gender,email} =this.props.record
-    const {visible,loading}=this.state
+    const {form:{ getFieldDecorator }, newItem, hideWindow, submitData, updateItem}=this.props;
+    const {id,loading,visible,name,age,gender,email,phone} = newItem;
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
     };
+    const modalProps={
+      title:id? "Edit User" : "Create User",
+      visible:visible,
+      footer: [
+        <Button key="back" onClick={hideWindow}>Cancel</Button>,
+        <Button key="ok" loading={loading} type="primary" onClick={submitData}>Save</Button>
+      ],
+      onCancel: hideWindow ,
+      confirmLoading: loading,
+      onOk: submitData,
+      maskClosable:false,
+      width :700
+    }
+
     return (
       <span>
-        <span onClick={this.showModelHandler}>{children}</span>
-        <Modal
-          title={title}
-          visible={visible}
-          onCancel={ this.hideModelHandler }
-          confirmLoading={loading}
-          onOk={ this.save }
-          afterClose={this.clearInfo}> 
+        <Modal {...modalProps}>
           <Form>
               <Form.Item label="Name"  {...formItemLayout}>
                   {getFieldDecorator('name', {
                           initialValue:name,
                           rules: [{ required: true, message: 'Please input your Name!' }],
-                      })(<Input />)}
+                      })(<Input onChange={(e) => updateItem({ name: e.target.value })}/>)}
               </Form.Item>
               <Form.Item label="Age"  {...formItemLayout}>
                   {getFieldDecorator('age', {
                           initialValue:age,
                           rules: [{ required: true, message: 'Please input your Age!' }],
-                      })(<Input />)}
+                      })(<Input onChange={(e) => updateItem({ age: e.target.value })}/>)}
               </Form.Item>
               <Form.Item label="Gender"  {...formItemLayout}>
                   {getFieldDecorator('gender', {
                           initialValue: gender||'Male',
                       })(
-                      <Radio.Group>
+                      <Radio.Group onChange={(e) => updateItem({ gender: e.target.value })}>
                         <Radio.Button value="Male">Male</Radio.Button>
                         <Radio.Button value="Female">Female</Radio.Button>
                       </Radio.Group>
                     )}
               </Form.Item>
+              <Form.Item label="Phone"  {...formItemLayout}>
+                  {getFieldDecorator('phone', {
+                          initialValue: phone,
+                          rules: [{ required: true, message: 'Please input your PhoneNum!' }],
+                      })(<Input onChange={(e) => updateItem({ phone: e.target.value })}/>)}
+              </Form.Item>
               <Form.Item label="Email"  {...formItemLayout}>
                   {getFieldDecorator('email', {
                           initialValue: email,
                           rules: [{ required: true, message: 'Please input your Email!' }],
-                      })(<Input />)}
+                      })(<Input onChange={(e) => updateItem({ email: e.target.value })}/>)}
               </Form.Item>
           </Form>
         </Modal>

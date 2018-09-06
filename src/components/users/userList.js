@@ -1,111 +1,137 @@
 import React from 'react';
 import { connect } from 'dva';
 import { Table, Popconfirm, Button, Pagination,Icon} from 'antd';
-import {PAGE_SIZE} from 'constants'
 import UserModel from 'components/userModel/userModel'
 
 
-const UserList = ({ dispatch,list:dataSource,total,page,loading}) => {
-  function handleDelete(id) {
-    dispatch({
-      type: 'user/remove',
-      payload: id,
-    });
-  }
-  function handleAdd(user){
-    dispatch({
-      type:'user/add',
-      payload:{user}
-    });
-  }
-  function handleEdit(id,user){
-    dispatch({
-      type:'user/patch',
-      payload:{ id, user }
-    })
-  }
+const UserList = ({ dispatch,usersM}) => {
+console.log(usersM)
 
-  function pageChangeHandler(page){
-    dispatch({
-      type:'user/query',
-      payload:page
-    })
-  }
 
-  const columns = [
-  {
-    title: 'ID',
-    dataIndex: 'id',
-  },
-  {
-  title: 'Name',
-  dataIndex: 'name',
-  }, 
-  {
+const columns = [{
+    title: 'Avatar',
+    dataIndex: 'avatar',
+    key: 'avatar',
+    width: 64,
+    render: text => <img alt="avatar" width={24} src={text} style={{borderRadius:"50%"}} />,
+},{
+    title: 'Name',
+    dataIndex: 'name',
+},{
     title:'Age',
     dataIndex:'age'
-  },
-  {
+},{
     title:'Gender',
     dataIndex:'gender'
-  },
-  {
+},{
+    title:'Phone',
+    dataIndex:'phone'
+},{
     title:'Email',
     dataIndex:'email'
-  },
-  {
+},{
     title: 'Actions',
     render: (text, record) => {
-      return (
+        return (
         <div>
-          <UserModel record={record} ok={(user) => handleEdit(record.id,user)} title="Edit Info">
-            <Button>Edit<Icon type="edit"/></Button> 
-          </UserModel>
-          <Popconfirm title="Confirm to delete?" onConfirm={() => handleDelete(record.id)}>
-            <Button>Delete<Icon type="delete"/></Button>
-          </Popconfirm>
+            <Button
+            style={{marginRight:'4px'}}
+            onClick={()=>{
+                dispatch({
+                    type:'usersM/updateStateNewItem',payload: {
+                        ...record,
+                        visible: true,
+                    }
+                })
+            }}>Edit<Icon type="edit"/></Button> 
+            <Popconfirm 
+            title="Confirm to delete?" 
+            onConfirm={() => {
+                dispatch({
+                    type:'usersM/deleteData',payload: {
+                        id: record.id,
+                    }
+                })
+            }}>
+                <Button>Delete<Icon type="delete"/></Button>
+            </Popconfirm>
         </div>
-      );
+        );
     },
-  }];
+}];
 
-  return (
-    <div className="container">
-        <div className="addWrapper">
-          <UserModel record={{}} ok = {handleAdd} title="Create User">
-            <Button type="primary" style={{margin:'10px 0 20px 0'}}>Create User<Icon type="user-add"/></Button> 
-          </UserModel>
-        </div>
-      <Table
-        dataSource={dataSource}
-        columns={columns}
-        rowKey={record=>record.id}
-        loading={loading}
-        pagination={false}
-      />
-      <Pagination
-        className="ant-table-pagination" //to float right pagination
-        style={{marginTop:'10px'}}
-        current={page}
-        total={total}
-        pageSize={PAGE_SIZE}
-        onChange={pageChangeHandler}
-        hideOnSinglePage={true}
-        />
-    </div>
-  );
-};
-
-
-//把store中的state拉到本地待用
-function mapStateToProps(state){
-  const {list,total,page,loading} =state.user;
-  return {
-    list,
-    total,
-    page,
-    loading
-  }
+const NewItemProps={
+    newItem: usersM.newItem,
+    updateItem(obj) { //输入或选择时update state/newItem
+        dispatch({
+            type: 'usersM/updateStateNewItem', payload: {
+                ...obj
+            }
+        })
+    },
+    submitData() {
+        dispatch({ type: "usersM/saveData" });
+    },
+    hideWindow() {
+        dispatch({ type: "usersM/updateStateNewItem", payload: { visible: false } });
+    },
 }
 
-export default connect(mapStateToProps)(UserList);
+const {newItem,tableData,selectedRowKeys,currentPage,pageSize,totalItems,loading} = usersM
+const rowSelectionProps = {
+    selectedRowKeys,
+    onChange: (selectedRowKeys) => {
+        dispatch({ type: "usersM/updateState", payload: { selectedRowKeys } });
+    }
+};
+const paginationProps={
+    showSizeChanger:true,
+    pageSizeOptions:['10', '20', '30', '40', '50'],
+    showQuickJumper: true,
+    className:"ant-table-pagination", //to float right pagination
+    current:currentPage,
+    total:totalItems,
+    pageSize:pageSize,
+    onChange(page, pageSize){
+        dispatch({
+            type: 'usersM/getTableData', payload: {
+                currentPage: page,
+                pageSize
+            }
+        })
+    },
+    // pageSize 变化的回调
+    onShowSizeChange(current, size) {
+        dispatch({
+            type: 'usersM/getTableData', payload: {
+                currentPage: current,
+                pageSize: size
+            }
+        })
+    },
+    showTotal: total => `Total ${usersM.totalItems} Results`
+}
+
+return (
+<div className="container">
+    <div className="addWrapper">
+
+    </div>
+    <div style={{padding:'30px 0 60px 0'}}>
+        <Table
+        dataSource={tableData}
+        rowSelection={rowSelectionProps}
+        columns={columns}
+        bordered
+        loading={loading}
+        pagination={false}
+        />
+        <Pagination {...paginationProps}/>
+    </div>
+    {
+        usersM.newItem.visible ? <UserModel  {...NewItemProps} /> : null
+    }
+</div>
+)};
+
+export default connect(({usersM})=>({usersM}))(UserList);

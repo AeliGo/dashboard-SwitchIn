@@ -16,13 +16,13 @@ const Dashboard = (props) => {
             <SideBar/>
             <Layout>
                 <HeaderDash/>
-                <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
+                <Content className={styles.content}>
                 <Breadcrumb style={{ margin: '10px 0' }}>
                     <Breadcrumb.Item>User</Breadcrumb.Item>
                     <Breadcrumb.Item>Bill</Breadcrumb.Item>
                     <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
                 </Breadcrumb>
-                    <div style={{ padding: 24, background: '#fff', textAlign: 'center' }}>
+                    <div style={{ background: '#fff' }}>
                         {props.children}
                     </div>
                 </Content>
