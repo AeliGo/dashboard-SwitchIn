@@ -111,27 +111,28 @@ const paginationProps={
     },
     showTotal: total => `Total ${usersM.totalItems} Results`
 }
+const tableProps={
+    dataSource:tableData,
+    rowSelection:rowSelectionProps,
+    columns:columns,
+    bordered:true,
+    loading:loading,
+    pagination:false
+}
 
 return (
-<div className="container">
-    <div className="addWrapper">
-
+    <div className="container">
+        <div>
+            
+        </div>
+        <div style={{padding:'30px 0 60px 0',minWidth:'1280px'}}>
+            <Table {...tableProps} />
+            <Pagination {...paginationProps}/>
+        </div>
+        {
+            usersM.newItem.visible ? <UserModel  {...NewItemProps} /> : null
+        }
     </div>
-    <div style={{padding:'30px 0 60px 0'}}>
-        <Table
-        dataSource={tableData}
-        rowSelection={rowSelectionProps}
-        columns={columns}
-        bordered
-        loading={loading}
-        pagination={false}
-        />
-        <Pagination {...paginationProps}/>
-    </div>
-    {
-        usersM.newItem.visible ? <UserModel  {...NewItemProps} /> : null
-    }
-</div>
 )};
 
 export default connect(({usersM})=>({usersM}))(UserList);
