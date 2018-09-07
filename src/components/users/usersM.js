@@ -35,11 +35,14 @@ export default {
     * getTableData({ payload},{call, put, select}){    //FETCH USER LIST WITH PAGESIZE AND TOTAL PAGES
         yield put({type:'updateState', payload:{ loading:true } });
         const state = yield select(({usersM})=>usersM);
+        const { searchForm } = state
         const {
             currentPage = state.currentPage,
             pageSize = state.pageSize
         } = payload || {};
+        let _form = {...searchForm}
         const {data}= yield call(getUsersListTableData, {
+            ..._form,
             currentPage,
             pageSize
         });

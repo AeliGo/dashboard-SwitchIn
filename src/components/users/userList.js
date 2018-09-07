@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Table, Popconfirm, Button, Pagination,Icon} from 'antd';
-import UserModel from 'components/userModel/userModel'
+import { Table, Popconfirm, Button, Pagination, Icon, message, Modal} from 'antd';
+import UserModel from 'components/userModel/userModel';
+import SearchFormTop from 'components/searchFormTop/searchFormTop'
 
 
 const UserList = ({ dispatch,usersM}) => {
@@ -29,6 +30,9 @@ const columns = [{
 },{
     title:'Email',
     dataIndex:'email'
+},{
+    title:'CreateTime',
+    dataIndex:'createTime'
 },{
     title: 'Actions',
     render: (text, record) => {
@@ -104,7 +108,7 @@ const paginationProps={
     onShowSizeChange(current, size) {
         dispatch({
             type: 'usersM/getTableData', payload: {
-                currentPage: current,
+                currentPage: 1,
                 pageSize: size
             }
         })
@@ -120,12 +124,53 @@ const tableProps={
     pagination:false
 }
 
+const searchFormProps={
+    dataSource:usersM.searchForm,
+    updateFormState:(obj)=>{
+        dispatch({type:'usersM/updateStateSearchForm',payload:obj})
+    },
+    clearFormState:()=>{
+        if(Object.keys(usersM.searchForm).length == 0){
+            return false
+        }
+        dispatch({type:'usersM/clearSearchForm'});
+        dispatch({type:'usersM/getTableData'});
+    },
+    searchComfirm:()=>{
+        if(Object.keys(usersM.searchForm).length == 0){
+            return false
+        }
+        dispatch({type:'usersM/getTableData'});
+    },
+    createUser:()=>{
+        dispatch({type:'usersM/updateStateNewItem',payload:{visible:true}})
+    },
+    deleteComfirm:()=>{
+        if(usersM.selectedRowKeys.length==0){
+            message.warning('You have not selected any data',2)
+        }else{
+            Modal.confirm({
+                content:`Are you sure to delete ${usersM.selectedRowKeys.length} data?`,
+                okText:'Sure',
+                cancelText:'Cancel',
+                onOk(){
+                    dispatch({
+                        type:'usersM/deleteData',payload:{
+                            ids:usersM.selectedRowKeys
+                        }
+                    })
+                }
+            })
+        }
+    }
+}
+
 return (
     <div className="container">
-        <div>
-            
+        <div style={{minWidth:'1280px'}}>
+            <SearchFormTop {...searchFormProps}/>
         </div>
-        <div style={{padding:'30px 0 60px 0',minWidth:'1280px'}}>
+        <div style={{minWidth:'1280px'}}>
             <Table {...tableProps} />
             <Pagination {...paginationProps}/>
         </div>

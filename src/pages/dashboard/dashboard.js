@@ -17,7 +17,7 @@ const Dashboard = (props) => {
             <Layout>
                 <HeaderDash/>
                 <Content className={styles.content}>
-                <Breadcrumb style={{ margin: '10px 0' }}>
+                <Breadcrumb style={{ margin: '10px' }}>
                     <Breadcrumb.Item>User</Breadcrumb.Item>
                     <Breadcrumb.Item>Bill</Breadcrumb.Item>
                     <Breadcrumb.Item>Dashboard</Breadcrumb.Item>

@@ -6,9 +6,6 @@ const { Header} = Layout;
 const SubMenu=Menu.SubMenu
 
 class HeaderDash extends React.Component{
-    // constructor(props){
-    //     super(props)
-    // }
 
     toggleCollapsed=()=>{
         const {collapsed,openKeys,recordKeys} = this.props.SideBarM;
@@ -32,7 +29,7 @@ class HeaderDash extends React.Component{
                         <Icon type="mail" />Mail
                     </Menu.Item>
                     <SubMenu className={styles.button} title={<span><Icon type="user" /><span>Admin</span></span>}>
-                        <Menu.Item key="logout">
+                        <Menu.Item key="logout" style={{height:'30px',lineHeight:'30px'}}>
                         Sign out
                         </Menu.Item>
                     </SubMenu>

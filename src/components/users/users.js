@@ -4,7 +4,7 @@ import UserList from 'components/users/userList';
 
 const Users = () => {
   return (
-    <div style={{margin:'20px'}}>
+    <div style={{margin:'10px'}}>
       <UserList/>
     </div>
   );

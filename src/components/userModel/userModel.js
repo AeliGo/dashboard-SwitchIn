@@ -6,6 +6,15 @@ class UserModel extends React.Component{
     super(props);
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        this.props.submitData();
+      }
+    });
+  }
+
 
   render(){
     const {form:{ getFieldDecorator }, newItem, hideWindow, submitData, updateItem}=this.props;
@@ -19,11 +28,11 @@ class UserModel extends React.Component{
       visible:visible,
       footer: [
         <Button key="back" onClick={hideWindow}>Cancel</Button>,
-        <Button key="ok" loading={loading} type="primary" onClick={submitData}>Save</Button>
+        <Button key="ok" loading={loading} type="primary" onClick={this.handleSubmit}>Save</Button>
       ],
       onCancel: hideWindow ,
       confirmLoading: loading,
-      onOk: submitData,
+      onOk: this.handleSubmit,
       maskClosable:false,
       width :700
     }
