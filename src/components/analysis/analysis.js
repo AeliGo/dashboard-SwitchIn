@@ -15,7 +15,7 @@ const Analysis= ({dispatch,analysisM})=>{
 
     return (
     <div className={styles.wrapper}>
-        <Row gutter={24}>
+        <Row gutter={24} style={{marginTop:'10px'}}>
             {numberCards}
         </Row>
     </div>
