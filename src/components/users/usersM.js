@@ -1,7 +1,7 @@
 import {message} from 'antd'
 import {
     getUsersListTableData, editUsersListData, savaUserListData, deleteUserListData
-} from 'services/remoteData'
+} from '../../services/remoteData'
 
 
 export default {
@@ -46,7 +46,7 @@ export default {
             currentPage,
             pageSize
         });
-        if(data && data.result==0){
+        if(data && data.result===0){
             yield put({
                 type: 'updateState', payload: {
                     currentPage,
@@ -83,7 +83,7 @@ export default {
         const {data} = yield call(_newItem.id ? editUsersListData : savaUserListData, {
             ..._newItem,
         });
-        if (data && data.result == 0) {
+        if (data && data.result === 0) {
             yield put({ type: 'getTableData' });
             message.success(_newItem.id ? (data.msg || '修改成功') : (data.msg || '新增成功'), 2);
             yield put({
@@ -107,7 +107,8 @@ export default {
         const {data} = yield call(deleteUserListData, {
             ids: id || ids.join(','),
         });
-        if (data && data.result == 0) {
+        console.log(data)
+        if (data && data.result === 0) {
             yield put({ type: 'getTableData' });
             message.success(data.msg || '删除成功', 2);
         }

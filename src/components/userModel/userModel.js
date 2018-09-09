@@ -2,9 +2,7 @@ import React  from 'react'
 import {Modal,Form,Input,Radio,Button} from 'antd'
 
 class UserModel extends React.Component{
-  constructor(props) {
-    super(props);
-  }
+
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -17,7 +15,7 @@ class UserModel extends React.Component{
 
 
   render(){
-    const {form:{ getFieldDecorator }, newItem, hideWindow, submitData, updateItem}=this.props;
+    const {form:{ getFieldDecorator }, newItem, hideWindow, updateItem}=this.props;
     const {id,loading,visible,name,age,gender,email,phone} = newItem;
     const formItemLayout = {
       labelCol: { span: 6 },

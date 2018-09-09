@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'dva';
 import { Table, Popconfirm, Button, Pagination, Icon, message, Modal} from 'antd';
-import UserModel from 'components/userModel/userModel';
-import SearchFormTop from 'components/searchFormTop/searchFormTop'
+import UserModel from '../userModel/userModel';
+import SearchFormTop from '../searchFormTop/searchFormTop'
 
 
 const UserList = ({ dispatch,usersM}) => {
@@ -13,17 +13,18 @@ const columns = [{
     title: 'Avatar',
     dataIndex: 'avatar',
     key: 'avatar',
-    width: 64,
+    width: 80,
     render: text => <img alt="avatar" width={24} src={text} style={{borderRadius:"50%"}} />,
 },{
     title: 'Name',
     dataIndex: 'name',
 },{
     title:'Age',
-    dataIndex:'age'
+    dataIndex:'age',
+    sorter: (a, b) => a.age - b.age,
 },{
     title:'Gender',
-    dataIndex:'gender'
+    dataIndex:'gender',
 },{
     title:'Phone',
     dataIndex:'phone'
@@ -81,7 +82,7 @@ const NewItemProps={
     },
 }
 
-const {newItem,tableData,selectedRowKeys,currentPage,pageSize,totalItems,loading} = usersM
+const {tableData,selectedRowKeys,currentPage,pageSize,totalItems,loading} = usersM
 const rowSelectionProps = {
     selectedRowKeys,
     onChange: (selectedRowKeys) => {
@@ -130,14 +131,14 @@ const searchFormProps={
         dispatch({type:'usersM/updateStateSearchForm',payload:obj})
     },
     clearFormState:()=>{
-        if(Object.keys(usersM.searchForm).length == 0){
+        if(Object.keys(usersM.searchForm).length === 0){
             return false
         }
         dispatch({type:'usersM/clearSearchForm'});
         dispatch({type:'usersM/getTableData'});
     },
     searchComfirm:()=>{
-        if(Object.keys(usersM.searchForm).length == 0){
+        if(Object.keys(usersM.searchForm).length === 0){
             return false
         }
         dispatch({type:'usersM/getTableData'});
@@ -146,7 +147,7 @@ const searchFormProps={
         dispatch({type:'usersM/updateStateNewItem',payload:{visible:true}})
     },
     deleteComfirm:()=>{
-        if(usersM.selectedRowKeys.length==0){
+        if(usersM.selectedRowKeys.length===0){
             message.warning('You have not selected any data',2)
         }else{
             Modal.confirm({

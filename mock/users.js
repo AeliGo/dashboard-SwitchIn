@@ -24,7 +24,7 @@ let database=usersListData.data;
 module.exports={
     [`GET /api/users/getTableData`](req,res){ 
         const data=qs.parse(req.query);
-        let { currentPage, pageSize,...other}=data;
+        let { currentPage, pageSize }=data;
         currentPage=currentPage || 1
         pageSize=pageSize || 10
 
@@ -41,12 +41,12 @@ module.exports={
     },
 
     [`POST /api/users/save`](req,res){
-        res.status(200).json({'result':'0','msg':'Add Successfully'});
+        res.status(200).json({result:0,msg:'Add Successfully'});
     },
     [`POST /api/users/edit`](req,res){
-        res.status(200).json({'result':'0','msg':'Edit Successfully'});
+        res.status(200).json({result:0,msg:'Edit Successfully'});
     },
     [`POST /api/users/delete`](req,res){
-        res.status(200).json({'result':'0','msg':'Delete Successfully'})
+        res.status(200).json({result:0,msg:'Delete Successfully'})
     },
 }

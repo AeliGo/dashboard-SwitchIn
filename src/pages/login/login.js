@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import { Button, Row, Form, Input } from 'antd'
-import { config } from 'constants'
+import { config } from '../../constants'
 import styles from './loginS.less'
 
 const FormItem = Form.Item

@@ -1,20 +1,18 @@
+
+import Dashboard from './pages/dashboard/dashboard';
+import Login from './pages/login/login';
 import React from 'react';
-import { Router, Route} from 'dva/router';
-import IndexPage from 'routes/IndexPage';
-import Users from 'components/users/users';
-import Dashboard from 'pages/dashboard/dashboard'
-import Analysis from 'components/analysis/analysis'
+import {  Route, Switch, HashRouter } from 'dva/router';
 
-import Login from 'pages/login/login'
-
-export default function({ history }) {
+const RouterConfig = () =>{
   return (
-    <Router history={history}>
-      <Route path="/"  exact component={Login} /> 
-      <Route component={Dashboard}>
-        <Route path="/dashboard" component={Analysis} />
-        <Route path="/dashboard/users" component={Users} />
-      </Route>
-    </Router>
+    <HashRouter>
+        <Switch>
+          <Route path="/"  exact component={Login} /> 
+          <Route path='/dashboard' component={Dashboard}/>
+        </Switch>
+    </HashRouter>
   );
-};
+}
+
+export default RouterConfig;

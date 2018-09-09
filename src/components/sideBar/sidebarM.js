@@ -1,6 +1,5 @@
-import { routerRedux } from 'dva/router'
-import request from 'utils/request';
-import {RecursiveTree,getParentId} from 'utils/funtool'
+import request from '../../utils/request';
+import {RecursiveTree,getParentId} from '../../utils/funtool'
 
 export default {
     namespace: 'SideBarM',
@@ -21,7 +20,7 @@ export default {
                 return 
             }else{
                 const data = yield call(request,`/api/sidebarData`,{method:'GET'}); //fetch data     
-                if( data && data.data.code===0){
+                if( data && data.data.result===0){
                     let dataArr=data.data.data;
                     const key=dataArr.filter((item)=>{ //获取route的pathname对应的sidebar数据的id值作为defaultSelectedKeys
                         return item.url===payload.pathname

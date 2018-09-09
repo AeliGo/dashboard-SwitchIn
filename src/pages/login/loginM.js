@@ -1,6 +1,6 @@
 import { routerRedux } from 'dva/router'
-import request from 'utils/request';
-import { message, notification } from 'antd';
+import request from '../../utils/request';
+import { message } from 'antd';
 
 export default {
     namespace: 'loginM',
@@ -15,8 +15,8 @@ export default {
             const data = yield call(request,`/api/login?uname=${payload.username}&upwd=${payload.password}`,{method:'GET'});
             yield put({type:'updateState',payload:{loading:false}})
 
-            if( data && data.data.code===0){
-                yield put(routerRedux.push('/dashboard'))
+            if( data && data.data.result===0){
+                yield put(routerRedux.push('/dashboard/analysis'))
                 yield put({type:'updateState',payload:{loginFail:false}})
             }else{              
                 message.error(data.data.msg);

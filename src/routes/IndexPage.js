@@ -12,7 +12,6 @@ function IndexPage() {
         <li><a href="https://github.com/dvajs/dva-docs/blob/master/v1/en-us/getting-started.md" target="_blank">Getting Started</a></li>
       </ul>
       <hr/>
-      <Link to="/users">TO Users</Link>
     </div>
   );
 }

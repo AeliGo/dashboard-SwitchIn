@@ -1,4 +1,3 @@
-import request from 'utils/request';
 
 export default {
     namespace: 'dashboardM',

@@ -4,15 +4,15 @@ module.exports={
     [`GET /api/sidebarData`](req,res){
         setTimeout(()=>{
             res.status(200).json({
-                code:0,
-                msg:'',
+                result:0,
+                msg:'success',
                 data:[
                     {
                         id:1,
                         parent_id:null,
                         name:'Main',
                         icon:'desktop',
-                        url:'/dashboard'
+                        url:'/dashboard/analysis'
                     },
                     {
                         id:2,
@@ -26,7 +26,7 @@ module.exports={
                         parent_id:null,
                         name:'Charts',
                         icon:'area-chart',
-                        url:null
+                        url:'/'
                     },
                     {
                         id:301,
@@ -54,28 +54,28 @@ module.exports={
                         parent_id:null,
                         name:'UI Elements',
                         icon:'api',
-                        url:null
+                        url:'/'
                     },
                     {
                         id:401,
                         parent_id:4,
                         name:'IconFont',
                         icon:'star',
-                        url:null
+                        url:'/'
                     },
                     {
                         id:402,
                         parent_id:4,
                         name:'DropDown',
                         icon:'bars',
-                        url:null
+                        url:'/'
                     },
                     {
                         id:403,
                         parent_id:4,
                         name:'Cards',
                         icon:'wallet',
-                        url:null
+                        url:'/'
                     },
                 ]
             })

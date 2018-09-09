@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'dva/router'
 import {connect} from 'dva'
 import {Menu, Icon, Layout} from 'antd'
-import { config } from 'constants'
+import { config } from '../../constants'
 import styles from './sidebarS.less'
 
 
@@ -10,7 +10,7 @@ const SubMenu=Menu.SubMenu;
 const { Sider} = Layout;
 
 const SideBar = ({dispatch,SideBarM}) => {
-    // console.log(SideBarM)
+    console.log(SideBarM)
 
     const {collapsed, sidebarTree, openKeys, rootSubmenuKeys, defaultKey}=SideBarM;
 

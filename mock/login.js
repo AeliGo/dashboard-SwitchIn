@@ -9,10 +9,10 @@ module.exports={
     [`GET /api/login`](req,res){ 
         const data=qs.parse(req.query);
         setTimeout(()=>{
-            if(data&&data.uname=='admin'&&data.upwd=='admin'){
-                res.status(200).json({code:0,msg:'login successfully'})
+            if(data&&data.uname==='admin'&&data.upwd==='admin'){
+                res.status(200).json({result:0,msg:'login successfully'})
             }else{
-                res.status(200).json({code:1,msg:'Username or Password Wrong !'})
+                res.status(200).json({result:1,msg:'Username or Password Wrong !'})
             }
         },1000)
     },

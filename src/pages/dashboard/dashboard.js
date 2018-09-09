@@ -1,10 +1,11 @@
 import React from 'react'
-import SideBar from 'components/sideBar/sidebar'
-import HeaderDash from 'components/header/header'
-
-import {connect} from 'dva'
+import SideBar from '../../components/sideBar/sidebar'
+import HeaderDash from '../../components/header/header'
+import { Switch, Route,Redirect } from 'dva/router'
 import { Layout,Breadcrumb } from 'antd';
 import styles from './dashboardS.less'
+import Analysis from '../../components/analysis/analysis'
+import Users from '../../components/users/users';
 
 
 const {Content } = Layout;
@@ -16,14 +17,18 @@ const Dashboard = (props) => {
             <SideBar/>
             <Layout>
                 <HeaderDash/>
-                <Content className={styles.content}>
                 <Breadcrumb style={{ margin: '10px' }}>
                     <Breadcrumb.Item>User</Breadcrumb.Item>
                     <Breadcrumb.Item>Bill</Breadcrumb.Item>
                     <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
                 </Breadcrumb>
-                    <div style={{ background: '#fff' }}>
-                        {props.children}
+                <Content className={styles.content}>
+                    <div style={{ background: '#fff'}}>
+                <Switch>  
+                    <Route path="/dashboard/analysis" component={ Analysis } />
+                    <Route path="/dashboard/users" component={Users} />
+                    <Redirect to='/'/> 
+                </Switch>
                     </div>
                 </Content>
             </Layout>
@@ -31,4 +36,4 @@ const Dashboard = (props) => {
     )
 }
 
-export default connect()(Dashboard);
+export default Dashboard;

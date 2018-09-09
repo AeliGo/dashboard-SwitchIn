@@ -1,0 +1,39 @@
+.numberCard {
+    padding: 32px;
+    margin-bottom: 24px;
+    cursor: pointer;
+  
+    .iconWarp {
+      font-size: 50px;
+      float: left;
+    }
+  
+    .content {
+      width: 100%;
+      padding-left: 75px;
+  
+      .title {
+        line-height: 20px;
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        height: 22px;
+        .text-overflow();
+      }
+  
+      .number {
+        line-height: 32px;
+        font-size: 30px;
+        height: 32px;
+        font-weight: 500;
+        .text-overflow();
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .text-overflow { //可以做成mixin
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
