@@ -16,7 +16,7 @@ const NumberCard=(props)=>{
                     <CountUp 
                     start={0} 
                     end={number}
-                    duration={2.75}
+                    duration={4}
                     useEasing
                     useGrouping
                     separator=","

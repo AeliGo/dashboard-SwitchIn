@@ -3,7 +3,7 @@ export default {
     namespace: 'dashboardM',
 
     state: {
-
+        entryLoading:true
     },
 
     effects: {
@@ -17,7 +17,15 @@ export default {
     subscriptions:{
         setup({ dispatch,history }){
           return history.listen(({ pathname,search })=>{ //
-       
+            if(/^\/dashboard/.test(pathname)){
+                setTimeout(()=>{
+                    dispatch({
+                        type:'updateState',payload:{
+                            entryLoading:false
+                        }
+                    });
+                },1000)
+            }
           });
         }
     }
