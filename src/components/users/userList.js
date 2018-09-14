@@ -14,7 +14,7 @@ const columns = [{
     dataIndex: 'avatar',
     key: 'avatar',
     width: 80,
-    render: text => <img alt="avatar" width={24} src={text} style={{borderRadius:"50%"}} />,
+    render: text => <div style={{textAlign:"center"}}><img alt="avatar" width={24} src={text} style={{borderRadius:"50%"}} /></div>,
 },{
     title: 'Name',
     dataIndex: 'name',

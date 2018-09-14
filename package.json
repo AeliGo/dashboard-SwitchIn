@@ -11,6 +11,7 @@
     "babel-plugin-import": "^1.8.0",
     "classnames": "^2.2.6",
     "dva": "^2.4.0",
+    "echarts-for-react": "^2.0.14",
     "mockjs": "^1.0.1-beta3",
     "react": "^16.2.0",
     "react-countup": "^4.0.0-alpha.6",

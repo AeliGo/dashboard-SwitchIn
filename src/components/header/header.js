@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'dva';
-import { Layout, Menu, Icon} from 'antd';
+import { Layout, Menu, Icon, Badge } from 'antd';
 import styles from './headerS.less'
 const { Header} = Layout;
 const SubMenu=Menu.SubMenu
@@ -26,7 +26,9 @@ class HeaderDash extends React.Component{
                 />
                 <Menu mode="horizontal" style={{float:'right'}} >
                     <Menu.Item key="mail" className={styles.button}>
-                        <Icon type="mail" />Mail
+                        <Badge count={15}>
+                            <Icon type="mail" />
+                        </Badge>
                     </Menu.Item>
                     <SubMenu className={styles.button} title={<span><Icon type="user" /><span>Admin</span></span>}>
                         <Menu.Item key="logout" style={{height:'30px',lineHeight:'30px'}}>
