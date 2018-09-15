@@ -122,7 +122,7 @@ const tableProps={
     columns:columns,
     bordered:true,
     loading:loading,
-    pagination:false
+    pagination:false,
 }
 
 const searchFormProps={

@@ -1,9 +1,6 @@
 .wrapper{
     position: relative;
     background: #f0f2f5;
-    .tabs{
- 
-    }
     :global{
         .ant-skeleton{
             .ant-skeleton-title{
@@ -14,40 +11,7 @@
                 margin: 0 auto;
             }
         }
-        
-        .ant-tabs-bar{
-            .ant-tabs-tab{
-                height: 54px;
-                line-height: 54px !important;
-                border: none !important;
-                width: 50% !important; 
-                .text-overflow();
-            } 
-            .ant-tabs-nav-container {
-                height: 54px !important;
-                padding: 0 !important;
-                .ant-tabs-tab-prev,.ant-tabs-tab-next{
-                    display: none !important;
-                }
-                .ant-tabs-nav{
-                    width: 100%;
-                   
-                }
-            }
-        }
-        .ant-tabs-content{
-            padding: 15px;
-            background-color: #fff;
-            height: 400px;
-        }
-
     }
 }
-
-.text-overflow { //可以做成mixin
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
 
   

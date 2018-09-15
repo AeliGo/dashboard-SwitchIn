@@ -38,7 +38,51 @@ const analysisData = Mock.mock({
           'Food|180-400': 1,
           'Electronics|300-550': 1,
         },
-      ],
+    ],
+    // 'projectsData|5-8':[{
+    //     'key|+1':1,
+    //     title: '@title(3, 5)',
+    //     status: {
+    //         state:'COMPLETED',
+    //         color:'lightgreen'
+    //     },
+    //     paragraph: '@sentence(10,18)',
+    //     date:'@datetime',
+    //     avatar () {
+    //         return Mock.Random.image('48x48', Mock.Random.color(), '#757575', 'png', this.title.substr(0, 1))
+    //     },
+    //   }],
+      projectsData:[
+          {
+            'pjtCompleted|5-8':[{
+                'key|+1':1,
+                title: '@title(3, 5)',
+                status: {
+                    state:'COMPLETED',
+                    color:'lightgreen'
+                },
+                paragraph: '@sentence(10,18)',
+                date:'@datetime',
+                avatar () {
+                    return Mock.Random.image('48x48', Mock.Random.color(), '#757575', 'png', this.title.substr(0, 1))
+                },
+              }]
+          },{
+            'pjtOnPlan|4-7':[{
+                'key|+1':1,
+                title: '@title(3, 5)',
+                status: {
+                    state:'PENDING',
+                    color:'lightpink'
+                },
+                paragraph: '@sentence(10,18)',
+                date:'@datetime',
+                avatar () {
+                    return Mock.Random.image('48x48', Mock.Random.color(), '#757575', 'png', this.title.substr(0, 1))
+                },
+              }],
+          }
+      ]
 });
 
 module.exports={
