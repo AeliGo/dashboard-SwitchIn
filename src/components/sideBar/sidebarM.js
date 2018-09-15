@@ -5,7 +5,7 @@ export default {
     namespace: 'SideBarM',
 
     state: {
-        collapsed:false,
+        collapsed:document.body.clientWidth<1280,
         sidebarTree:[],
         openKeys: [],
         recordKeys:[], //用于记录collapse之前的key值
@@ -35,6 +35,13 @@ export default {
                 }
             }
         },
+        * collapseSiderOrNot({payload},{put,select}){
+            const data =yield (select(({dashboardM})=>dashboardM));
+            const collapsed =document.body.clientWidth<1280;
+            if(collapsed!==data.collapsed){
+                yield put({type:'updateState',payload:{collapsed}})
+            }
+        }
     },
     reducers: {
         'updateState'(state,action){
@@ -42,12 +49,21 @@ export default {
         },
     },
     subscriptions:{
-        setup({ dispatch,history }){
+        setupHistory ({ dispatch,history }){
           return history.listen(({ pathname,search })=>{ //
             if( /^(\/dashboard)/.test(pathname)){
                 dispatch({type:'getTreeData',payload:{pathname}});
             }
           });
+        },
+        setup ({dispatch}){
+            let timer;
+            window.onresize=()=>{
+                clearTimeout(timer);
+                timer=setTimeout(()=>{
+                    dispatch({type:'collapseSiderOrNot'})
+                },300) //节流
+            }
         }
     }
 

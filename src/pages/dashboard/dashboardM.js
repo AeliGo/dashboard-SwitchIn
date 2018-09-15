@@ -3,7 +3,8 @@ export default {
     namespace: 'dashboardM',
 
     state: {
-        entryLoading:true
+        entryLoading:true,
+        collapseSiderFlag:document.body.clientWidth < 1000
     },
 
     effects: {
@@ -15,19 +16,20 @@ export default {
         },
     },
     subscriptions:{
-        setup({ dispatch,history }){
-          return history.listen(({ pathname,search })=>{ //
-            if(/^\/dashboard/.test(pathname)){
-                setTimeout(()=>{
-                    dispatch({
-                        type:'updateState',payload:{
-                            entryLoading:false
-                        }
-                    });
-                },1000)
-            }
-          });
-        }
+        setupHistory ({ dispatch,history }){
+            return history.listen(({ pathname,search })=>{ //
+                if(/^\/dashboard/.test(pathname)){
+                    setTimeout(()=>{
+                        dispatch({
+                            type:'updateState',payload:{
+                                entryLoading:false
+                            }
+                        });
+                    },1000)
+                }
+            });
+        },
+        
     }
 
 }

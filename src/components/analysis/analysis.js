@@ -11,6 +11,7 @@ const TabPane = Tabs.TabPane;
 const Analysis= ({dispatch,analysisM,dashboardM})=>{
     console.log(analysisM)
 
+
     const { numbers }=analysisM
 
     const numberCards = numbers.map((item,key)=>{
