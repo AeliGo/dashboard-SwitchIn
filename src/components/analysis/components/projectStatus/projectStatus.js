@@ -30,12 +30,12 @@ const ProjectStatus = (props) =>{ //project状态确认模块
 
     return(
         <Tabs type="card"  tabBarStyle={{height:'54px',margin:'0px'}}>
-            <TabPane tab="Project Completed" key="1">
+            <TabPane tab="Tasks Completed" key="1">
                 {
                     dataSource.length === 2? <Table pagination={false}  showHeader={false} rowKey={(record, key) => key} dataSource={dataSource[0].pjtCompleted} columns={columns}></Table>:null
                 }
             </TabPane>
-            <TabPane tab="Project On Plan" key="2">
+            <TabPane tab="Tasks On Plan" key="2">
                 {
                     dataSource.length === 2? <Table pagination={false}  showHeader={false} rowKey={(record, key) => key} dataSource={dataSource[1].pjtOnPlan} columns={columns}></Table>:null
                 }

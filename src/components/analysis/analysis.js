@@ -11,7 +11,7 @@ const Analysis= ({dispatch,analysisM,dashboardM})=>{
     console.log(analysisM)
  
 
-    const { numbers ,projectsData}=analysisM
+    const { numbers ,projectsData,salesSummary}=analysisM
     const numberCards = numbers.map((item,key)=>{
         return (<Col lg={6} md={12} key={key}><NumberCard  datas={item}/></Col>)
     })
@@ -29,7 +29,7 @@ const Analysis= ({dispatch,analysisM,dashboardM})=>{
                     height: '400px'
                 }}>
                 <Skeleton active loading={dashboardM.entryLoading} paragraph={{rows:11}}>
-                    <ChartSaleSummary/>
+                    <ChartSaleSummary data={salesSummary}/>
                 </Skeleton>
                 </Card>
             </Col>

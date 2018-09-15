@@ -6,7 +6,7 @@ export default {
     state: {
         loading:false,
         numbers:[],
-        sales:[],
+        salesSummary:{},
         projectsData:[]
     },
 
