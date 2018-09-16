@@ -4,6 +4,7 @@ import styles from './styles.less'
 import { Row, Col,Card,Skeleton } from 'antd'
 import NumberCard from './components/numberCard/numberCard'
 import ChartSaleSummary from './components/chartSaleSummary/chartSaleSummary'
+import SalesCalendar from './components/salesCalendar/salesCalendar'
 import ProjectStatus from './components/projectStatus/projectStatus'
 
 
@@ -20,13 +21,26 @@ const Analysis= ({dispatch,analysisM,dashboardM})=>{
     <div className={styles.wrapper}>
         <Row gutter={24} style={{marginTop:'10px'}}>
             {numberCards}
+            <Col lg={12} md={24} >
+                <Card title="Sale Calendar" 
+                bordered={false} 
+                bodyStyle={{
+                    width: '100%',
+                    padding: '15px',
+                    marginBottom:'24px',
+                    height: '300px',
+                }}>
+                    <SalesCalendar/>
+                </Card>
+            </Col>
             <Col lg={18} md={24}>
                 <Card title="Sale Summary" 
                 bordered={false} 
                 bodyStyle={{
                     width: '100%',
                     padding: '10px',
-                    height: '400px'
+                    height: '400px',
+                    // marginBottom:'24px'
                 }}>
                 <Skeleton active loading={dashboardM.entryLoading} paragraph={{rows:11}}>
                     <ChartSaleSummary data={salesSummary}/>
@@ -36,7 +50,6 @@ const Analysis= ({dispatch,analysisM,dashboardM})=>{
             <Col lg={6} md={24}>
                 <ProjectStatus dataSource={projectsData}/>
             </Col>
-
         </Row>
     </div>
     )
