@@ -7,7 +7,8 @@ export default {
         loading:false,
         numbers:[],
         salesSummary:{},
-        projectsData:[]
+        projectsData:[],
+        salesCalendar:{}
     },
 
     effects: {

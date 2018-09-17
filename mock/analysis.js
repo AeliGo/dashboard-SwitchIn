@@ -1,5 +1,26 @@
 const Mock = require('mockjs');
 
+let getVirtulData = ()=> {
+    let nowTime = new Date().getTime();//获取系统当前时间戳
+    const dayTime = 3600 * 24 * 1000;
+    let endTime= nowTime-dayTime*182; //half year
+    let data = [];
+    let count =1,startAndEnd=[];
+    for (var time = endTime; time < nowTime; time += dayTime) {
+        const timeDate=new Date(time);
+        if(count===1||count===182){
+            startAndEnd.push(`${timeDate.getFullYear()}-${timeDate.getMonth()+1}-${timeDate.getDate()}`)
+        }
+        count++;
+        data.push([
+            `${timeDate.getFullYear()}-${timeDate.getMonth()+1}-${timeDate.getDate()}`,
+            Math.floor(Math.random() * 10000)
+        ]);
+    }
+    return {data,startAndEnd};
+}
+
+
 const analysisData = Mock.mock({
     numbers:[{
         icon:'pay-circle-o',
@@ -91,7 +112,10 @@ const analysisData = Mock.mock({
                 return Mock.Random.image('48x48', Mock.Random.color(), '#757575', 'png', this.title.substr(0, 1))
             },
         }]}
-    ]
+    ],
+    salesCalendar:{
+        data:getVirtulData()
+    }
 });
 
 module.exports={

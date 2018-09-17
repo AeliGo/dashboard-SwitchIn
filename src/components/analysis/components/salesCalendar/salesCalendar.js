@@ -3,84 +3,100 @@ import ReactEcharts  from 'echarts-for-react'
 
 export default class SalesCalendar extends React.Component{
 
-
-     getVirtulData = (year)=> {
-        year = year || '2017';
-        const date = Date.parse(year + '-01-01');
-        const end = Date.parse((+year + 1) + '-01-01');
-        const dayTime = 3600 * 24 * 1000;
-        let data = [];
-        
-        for (var time = date; time < end; time += dayTime) {
-            const timeDate=new Date(time);
-            data.push([
-                `${timeDate.getFullYear()}-${timeDate.getMonth()+1}-${timeDate.getDate()}`,
-                Math.floor(Math.random() * 10000)
-            ]);
-        }
-        return data;
-    }
-    
-
       render(){
 
         const option = {
-            tooltip: {
-                position: 'top'
-            },
-            visualMap: {
-                min: 0,
-                max: 10000,
-                calculable: true,
-                orient: 'horizontal',
+            title: {
+                text: 'Daily Sales In Last 6 Months(USD)',
                 left: 'center',
-                top: 'top'
+                textStyle: {
+                    color: 'rgba(0, 0, 0, 0.6)'
+                }
             },
-            calendar: [
-            {
-                top: 'middle',
-                right:'5px',
-                width:'91%',
-                height:'180px',
-                range: ['2017-01-01', '2017-06-30'],
-                cellSize: ['auto', 20],
-                backgroundColor:'#ffa',
+            tooltip : {
+                trigger: 'item'
+            },
+            legend: {
+                top: '30',
+                left: '10',
+                data:['Daily Sales', 'Top 10 Sales'],
+                textStyle: {
+                    color: 'rgba(0, 0, 0, 0.8)'
+                }
+            },
+            calendar: [{
+                top: 80,
+                left: 'center',
+                cellSize: ['auto', 25],
+                range: this.props.data.startAndEnd,
                 splitLine: {
                     show: true,
                     lineStyle: {
-                        color: '#000',
-                        width: 3,
+                        color: 'rgba(0, 0, 0, 0.6)',
+                        width: 2,
                         type: 'solid'
                     }
                 },
+                yearLabel: {
+                    formatter: '{start} 1',
+                    textStyle: {
+                        color: '#000'
+                    }
+                },
                 itemStyle: {
                     normal: {
-                        color: '#323c48',
+                        color: '#fff',
                         borderWidth: 1,
-                        borderColor: '#111',
+                        borderColor: 'rgba(0, 0, 0, 0.3)'
                     }
                 }
             }],
-            series: [{
-                type: 'scatter',
-                coordinateSystem: 'calendar',
-                data: this.getVirtulData(2017),
-                symbolSize: function (val) {
-                    return val[1] / 500;
+            series : [
+                {
+                    name: 'Daily Sales',
+                    type: 'scatter',
+                    coordinateSystem: 'calendar',
+                    data: this.props.data.data,
+                    symbolSize: function (val) {
+                        return val[1] / 450;
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#21b8ec'
+                        }
+                    }
                 },
-                itemStyle: {
-                    normal: {
-                        color: '#ddb926',
-                    }    
-                },
-                zlevel: 1
-            }]
-        };
+                {
+                    name: 'Top 10 Sales',
+                    type: 'effectScatter',
+                    coordinateSystem: 'calendar',
+                    data: this.props.data.data.sort(function (a, b) {
+                        return b[1] - a[1];
+                    }).slice(0, 10),
+                    symbolSize: function (val) {
+                        return val[1] / 500;
+                    },
+                    showEffectOn: 'render',
+                    rippleEffect: {
+                        brushType: 'stroke'
+                    },
+                    hoverAnimation: true,
+                    itemStyle: {
+                        normal: {
+                            color: '#00bfff',
+                        }
+                    },
+                    zlevel: 1
+                }
+            ]
+            };
         return (
           <div>
-                <ReactEcharts
-                    option={option}
-                />
+                {
+                    this.props.data&&<ReactEcharts
+                        option={option}
+                    />
+                }
           </div>
       )
     }
