@@ -168,10 +168,10 @@ const searchFormProps={
 
 return (
     <div className="container">
-        <div style={{minWidth:'1280px'}}>
+        <div>
             <SearchFormTop {...searchFormProps}/>
         </div>
-        <div style={{minWidth:'1280px'}}>
+        <div>
             <Table {...tableProps} />
             <Pagination {...paginationProps}/>
         </div>

@@ -16,5 +16,58 @@
 .waveWrapper{
     background-color: #fff;
     margin-bottom: 24px;
+    padding: 0 25px;
+    height: 100%;
+    width: 100%;
+    .colorBlock{
+        display: inline-block;
+        width: 20px;
+        height: 10px;
+        background-color: #faa;
+        border-radius:10%;
+        margin-right: 15px;
+    }
+    .barWrapper{
+        position: relative;
+        height: 12px;
+        bottom: -20px;
+        display: flex;
+        justify-content: center;
+        transition: all ease-out .5s;
+        span{
+            display: inline-block;
+            width: 25%;
+            height: 100%;
+            background-color: #ffa;
+        }
+        span:first-child{
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+        span:last-child{
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+        span:hover{
+            transform: scale(1.08);
+        }
+    }
+    :global{
+        .ant-table-thead > tr > th{
+            background-color: #fff;
+            .text-overflow();
+        }
+        .ant-table-tbody > tr > td{
+            padding: 14px 16px;
+            .text-overflow();
+        }
+    }
 }
+
+
+.text-overflow { //可以做成mixin
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
   
