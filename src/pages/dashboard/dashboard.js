@@ -9,7 +9,6 @@ import EntryLoader from '../../components/entryLoader/entryLoader'
 import Analysis from '../../components/analysis/analysis'
 import Users from '../../components/users/users';
 
-
 const {Content } = Layout;
 
 const Dashboard = ({dashboardM}) => {

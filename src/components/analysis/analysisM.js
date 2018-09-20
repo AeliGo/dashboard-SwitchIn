@@ -8,7 +8,8 @@ export default {
         numbers:[],
         salesSummary:{},
         projectsData:[],
-        salesCalendar:{}
+        salesCalendar:{},
+        percentageBarData:[]
     },
 
     effects: {

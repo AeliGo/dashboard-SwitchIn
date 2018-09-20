@@ -115,7 +115,40 @@ const analysisData = Mock.mock({
     ],
     salesCalendar:{
         data:getVirtulData()
-    }
+    },
+    percentageBarData:[
+        {
+            key: '1',
+            name: 'Category-1',
+            total: 30,
+            proportion:'15%',
+            color:'#0099ff'
+        }, {
+            key: '2',
+            name: 'Category-2',
+            total: 42,
+            proportion:'21%',
+            color:'#27BA75'
+        }, {
+            key: '3',
+            name: 'Category-3',
+            total: 10,
+            proportion:'5%',
+            color:'#FFB300'
+        }, {
+            key: '4',
+            name: 'Category-4',
+            total: 96,
+            proportion:'49%',
+            color:'#21B8EC'
+        }, {
+            key: '5',
+            name: 'Category-5',
+            total: 20,
+            proportion:'10%',
+            color:'#F56753'
+        }
+    ]
 });
 
 module.exports={
