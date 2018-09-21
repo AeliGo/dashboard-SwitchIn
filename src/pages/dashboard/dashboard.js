@@ -11,14 +11,41 @@ import Users from '../../components/users/users';
 
 const {Content } = Layout;
 
-const Dashboard = ({dashboardM}) => {
-
+const Dashboard = ({dispatch,dashboardM}) => {
     const {entryLoading} = dashboardM;
+    console.log('dashboardM',dashboardM)
+
+    const headerProps={
+        onFull(element){
+            if(element.requestFullscreen){
+                element.requestFullscreen();
+            }else if(element.mozRequestFullscreen){
+                element.mozRequestFullscreen();
+            }else if(element.webkitRequestFullscreen){
+                element.webkitRequestFullscreen();
+            }else if(element.msRequestFullscreen){
+                element.msRequestFullscreen();
+            }
+            dispatch({type:'dashboardM/switchFullScreen',payload:{fullScreen:true}});
+        },
+        onExitFull(){
+            if(document.exitFullscreen){
+                document.exitFullscreen();
+            }else if(document.mozCancelFullscreen){
+                document.mozCancelFullscreen();
+            }else if(document.webkitExitFullscreen){
+                document.webkitExitFullscreen();
+            }
+            dispatch({type:'dashboardM/switchFullScreen',payload:{fullScreen:false}});
+        }
+    }
+
+
     return (
         <Layout className={styles.container}>
             <SideBar/>
             <Layout>
-                <HeaderDash/>
+                <HeaderDash {...headerProps}/>
                 <Breadcrumb style={{ margin: '10px 20px' }}>
                     <Breadcrumb.Item>User</Breadcrumb.Item>
                     <Breadcrumb.Item>Bill</Breadcrumb.Item>

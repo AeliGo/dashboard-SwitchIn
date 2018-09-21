@@ -6,7 +6,6 @@ import SearchFormTop from '../searchFormTop/searchFormTop'
 
 
 const UserList = ({ dispatch,usersM}) => {
-console.log(usersM)
 
 
 const columns = [{

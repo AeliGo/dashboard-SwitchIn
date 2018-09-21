@@ -10,7 +10,8 @@ export default {
         openKeys: [],
         recordKeys:[], //用于记录collapse之前的key值
         rootSubmenuKeys:[],
-        defaultKey:''
+        defaultKey:'',
+        
     },
 
     effects: {
