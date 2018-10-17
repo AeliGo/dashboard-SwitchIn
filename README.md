@@ -1,10 +1,11 @@
 # Dashboard-SwitchIn
 dva + react + antd + mock
 
-> ## Description: Dashboard for antd UI practise
+> ## Description: Dashboard for antd UI practice
 > * Html/CSS/Javascript/less
 > * dva
 > * Mock Data
+> * echart
 
 ## Build Setup
 
