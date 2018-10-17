@@ -3,7 +3,7 @@ dva + react + antd + mock
 
 > ## Description: Dashboard for antd UI practice
 > * Html/CSS/Javascript/less
-> * dva
+> * dva,dva/router
 > * Mock Data
 > * echart
 
