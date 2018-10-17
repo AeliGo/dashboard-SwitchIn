@@ -1,4 +1,4 @@
-# dashboard-SwitchIn
+# Dashboard-SwitchIn
 dva + react + antd + mock
 
 > ## Description: Dashboard for antd UI practise
