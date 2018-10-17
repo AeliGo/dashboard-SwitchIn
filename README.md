@@ -5,7 +5,7 @@ dva + react + antd + mock
 > * Html/CSS/Javascript/less
 > * dva,dva/router
 > * Mock Data
-> * echart
+> * Echarts-for-react
 
 ## Build Setup
 
@@ -21,7 +21,7 @@ npm run build
 
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+For a detailed explanation on how things work, check out the [docs for React](https://reactjs.org/) and [docs for Echart API](https://ecomfe.github.io/echarts-doc/public/en/index.html).
 
 ## License
 MIT
