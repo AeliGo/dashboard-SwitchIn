@@ -1,5 +1,5 @@
 # Dashboard-SwitchIn
-dva + react + antd + mock
+react + antd + mock
 
 > ## Description: Dashboard for practice
 > * Html/CSS/Javascript/less
