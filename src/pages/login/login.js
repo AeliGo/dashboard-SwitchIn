@@ -1,27 +1,20 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'dva'
-import { Button, Row, Form, Input } from 'antd'
-import { config } from '../../constants'
-import styles from './loginS.less'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'dva';
+import { Button, Row, Form, Input } from 'antd';
+import { config } from '../../constants';
+import styles from './loginS.less';
 
-const FormItem = Form.Item
+const FormItem = Form.Item;
 
-const Login = ({
-  dispatch,
-  form: {
-    getFieldDecorator,
-    validateFieldsAndScroll,
-  },
-  loginM
-}) => {
-  function handleOk () {
+const Login = ({ dispatch, form: { getFieldDecorator, validateFieldsAndScroll }, loginM }) => {
+  function handleOk() {
     validateFieldsAndScroll((errors, values) => {
       if (errors) {
-        return
+        return;
       }
-      dispatch({ type: 'loginM/login', payload: values })
-    })
+      dispatch({ type: 'loginM/login', payload: values });
+    });
   }
 
   return (
@@ -50,18 +43,18 @@ const Login = ({
           })(<Input type="password" onPressEnter={handleOk} placeholder="Password" />)}
         </FormItem>
         <Row>
-          <Button type="primary" onClick={handleOk} loading={loginM.loading} >
+          <Button type="primary" onClick={handleOk} loading={loginM.loading}>
             Sign in
           </Button>
         </Row>
       </form>
     </div>
-  )
-}
+  );
+};
 
 Login.propTypes = {
   form: PropTypes.object,
   dispatch: PropTypes.func,
-}
+};
 
-export default connect(({loginM})=>({loginM}))(Form.create()(Login))
+export default connect(({ loginM }) => ({ loginM }))(Form.create()(Login));
